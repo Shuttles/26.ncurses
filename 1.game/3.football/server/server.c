@@ -5,10 +5,9 @@
 	> Created Time: 2020年06月02日 星期二 18时13分44秒
  ************************************************************************/
 
-#include "../common/color.h"
 #include "../common/head.h"
-#include "../common/common.h"
 #include "../common/udp_server.h"
+#include "../common/udp_epoll.h"
 #include "../game.h"
 
 char *conf = "./server.conf";
@@ -65,7 +64,7 @@ int main(int argc, char **argv) {
 
     
 
-    pthread_create(&draw_t, NULL, draw, NULL);
+    //pthread_create(&draw_t, NULL, draw, NULL);
     
 
     epoll_fd = epoll_create(MAX * 2);
@@ -87,15 +86,24 @@ int main(int argc, char **argv) {
     socklen_t len = sizeof(client);
 
     while (1) {
-        w_gotoxy_puts(Message, 1, 1, "Wait for login");
-        wrefresh(Message);
+        //w_gotoxy_puts(Message, 1, 1, "Wait for login");
+        //wrefresh(Message);
+        DBG(YELLOW"EPOLL"NONE" : before epoll_wait.\n");
         int nfds = epoll_wait(epoll_fd, events, MAX * 2, -1);
+        DBG(YELLOW"EPOLL"NONE" : After epoll_wait.\n");
         
         for (int i = 0; i < nfds; i++) {
-            char info[1024] = {0};
-            recvfrom(events[i].data.fd, (void *)&lg, sizeof(lg), 0, (struct sockaddr *)&client, &len);
-            sprintf(info, "Login: %s : %d", inet_ntoa(client.sin_addr), client.sin_port);
-            w_gotoxy_puts(Message, 1, 2, info);
+            DBG(YELLOW"EPOLL"NONE" : Doing with %dth fd\n", i);
+            char buff[512] = {0};
+            if (events[i].data.fd == listener) {
+                //accept();
+                udp_accept(epoll_fd, listener);
+            } else {
+                recv(events[i].data.fd, buff, sizeof(buff), 0);
+                printf(PINK"RECV"NONE" : %s\n", buff); 
+            }
+           // char info[1024] = {0};
+            //w_gotoxy_puts(Message, 1, 2, info);
         }
 
     }

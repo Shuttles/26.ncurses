@@ -26,4 +26,7 @@
 #include <sys/select.h>
 #include <errno.h>
 #include <sys/epoll.h>
+#include "./global.h"
+#include "./color.h"
+#include "./common.h"
 #endif
