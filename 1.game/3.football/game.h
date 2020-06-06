@@ -12,44 +12,8 @@
 
 #define MAX 50
 
-struct LogData {
-    char name[20];
-    int team;//0 RED 1 BLUE
-};
-
-
-struct Point {
-    int x, y;
-};
-
-struct User {
-    int team;
-    char name[20];
-    int flag;//未响应的次数，达到三次就认为不在线
-    struct sockaddr_in addr;
-    struct Point loc;
-};
-
-
-struct Map {
-    int width;
-    int height;
-    struct Point start;
-    int gate_width;
-    int gate_height;
-};
-
 struct Map court;
 
-struct Ctrl {
-    int carry;
-    int kick;
-};
-
-struct TransMsg {
-    int dirx, diry;
-    struct Ctrl ctrl;
-};
 
 WINDOW *Football, *Message, *Help, *Score, *Write;
 

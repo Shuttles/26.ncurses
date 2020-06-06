@@ -18,8 +18,10 @@ struct User *rteam;
 struct User *bteam;
 int data_port;
 
+int port  = 0;
+
 int main(int argc, char **argv) {
-    int opt, port = 0, listener, epoll_fd;
+    int opt, listener, epoll_fd;
     pthread_t draw_t;
     while ((opt = getopt(argc, argv, "p:")) != -1) {
         switch (opt) {
@@ -81,7 +83,7 @@ int main(int argc, char **argv) {
 
     epoll_ctl(epoll_fd, EPOLL_CTL_ADD, listener, &ev);
 
-    struct LogData lg;
+    //struct LogData lg;
     struct sockaddr_in client;
     socklen_t len = sizeof(client);
 
