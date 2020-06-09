@@ -7,6 +7,9 @@
 
 #ifndef _DATATYPE_H
 #define _DATATYPE_H
+
+#define MAXMSG 1024
+
 struct LogRequest {
     char name[20];
     int team;//0 RED 1 BLUE
@@ -24,7 +27,9 @@ struct Point  {
 
 struct User {
     int team;
+    int fd;//保存连接
     char name[20];
+    int online;
     int flag;//未响应的次数，达到三次就认为不在线
     struct sockaddr_in addr;
     struct Point loc;
@@ -48,6 +53,17 @@ struct Ctrl {
 struct TransMsg {
     int dirx, diry;
     struct Ctrl ctrl;
+};
+
+#define FT_TEST 0x01
+#define FT_WALL 0x02
+#define FT_MSG 0x04
+#define FT_ACK 0x08
+
+struct FootBallMsg {
+    int type;
+    int size;
+    char msg[MAXMSG];
 };
 
 #endif
