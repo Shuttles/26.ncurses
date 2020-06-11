@@ -55,7 +55,7 @@ int udp_connect(int epollfd, struct sockaddr_in *serveraddr) {
         return -1;
     }
     DBG(GREEN"INFO"NONE" : After connect.\n");
-    int ret = send(sockfd, "Login!", sizeof("Login!"), 0);
+    int ret = send(sockfd, "Login!\n", sizeof("Login!\n"), 0);
     DBG(RED"RET = %d\n"NONE, ret);
     //add_event(epollfd, sockfd, EPOLLIN);
     return sockfd;
@@ -74,12 +74,12 @@ int udp_accept(int epollfd, int fd, struct User *user) {
     ret = recvfrom(fd, (void *)&request, sizeof(request), 0, (struct sockaddr *)&client, &len);
     if (ret != sizeof(request)) {
         response.type = 1;
-        strcpy(response.msg, "Login failed.");
+        strcpy(response.msg, "Login failed.\n");
         sendto(fd, (void *)&response, sizeof(response), 0, (struct sockaddr *)&client, len);
         return -1;
     }
     response.type = 0;
-    strcpy(response.msg, "Login success.Enjoy yourself.");
+    strcpy(response.msg, "Login success.Enjoy yourself.\n");
     sendto(fd, (void *)&response, sizeof(response), 0, (struct sockaddr *)&client, len);
 
     if (request.team) 

@@ -8,7 +8,6 @@
 #include "../common/head.h"
 #include "../common/udp_server.h"
 #include "../common/udp_epoll.h"
-
 #include "../common/thread_pool.h"
 #include "../common/sub_reactor.h"
 #include "../common/heart_beat.h"
@@ -125,7 +124,7 @@ int main(int argc, char **argv) {
                 //accept();
                 int new_fd = udp_accept(epoll_fd, listener, &user);
                 if (new_fd > 0) {
-                    DBG(YELLOW"Main Thread"NONE" : Add %s to %s sub_reactor", user.name, (user.team ? "blue" : "red"));
+                    DBG(YELLOW"Main Thread"NONE" : Add %s to %s sub_reactor\n", user.name, (user.team ? "blue" : "red"));
                     add_to_sub_reactor(&user);
                 }
             } else {

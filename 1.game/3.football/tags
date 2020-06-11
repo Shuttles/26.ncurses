@@ -26,6 +26,8 @@ L_RED	common/color.h	15;"	d
 L_YELLOW	common/color.h	19;"	d
 LogRequest	common/datatype.h	/^struct LogRequest {$/;"	s
 LogResponse	common/datatype.h	/^struct LogResponse {$/;"	s
+MAX	common/heart_beat.c	11;"	d	file:
+MAX	common/sub_reactor.c	11;"	d	file:
 MAX	common/udp_epoll.c	13;"	d	file:
 MAX	game.h	13;"	d
 MAXMSG	common/datatype.h	11;"	d
@@ -47,6 +49,8 @@ _COMMON_H	common/common.h	9;"	d
 _DATATYPE_H	common/datatype.h	9;"	d
 _GAME_H	game.h	9;"	d
 _GLOBAL_H	common/global.h	9;"	d
+_HEART_BEAT_H	common/heart_beat.h	9;"	d
+_SUB_REACTOR_H	common/sub_reactor.h	9;"	d
 _THREAD_POOL_H	common/thread_pool.h	9;"	d
 _UDP_CLIENT_H	common/udp_client.h	9;"	d
 _UDP_EPOLL_H	common/udp_epoll.h	9;"	d
@@ -83,6 +87,8 @@ gotoxy	game.h	/^void gotoxy(int x, int y) {$/;"	f
 gotoxy_putc	game.h	/^void gotoxy_putc(int x, int y, int c) {$/;"	f
 gotoxy_puts	game.h	/^void gotoxy_puts(int x, int y, char *s) {$/;"	f
 head	common/thread_pool.h	/^    int head, tail;$/;"	m	struct:task_queue
+heart_beat	common/heart_beat.c	/^void *heart_beat(void *arg) {$/;"	f
+heart_beat_team	common/heart_beat.c	/^void heart_beat_team(struct User *team) {$/;"	f
 height	common/datatype.h	/^    int height;$/;"	m	struct:Map
 initfootball	game.h	/^void initfootball() {$/;"	f
 kick	common/datatype.h	/^    int kick;$/;"	m	struct:Ctrl
@@ -113,6 +119,7 @@ socket_create_udp	common/server.c	/^int socket_create_udp(int port) {$/;"	f
 socket_create_udp	common/udp_server.c	/^int socket_create_udp(int port) {$/;"	f
 socket_udp	common/udp_client.c	/^int socket_udp() {$/;"	f
 start	common/datatype.h	/^    struct Point start;$/;"	m	struct:Map	typeref:struct:Map::Point
+sub_reactor	common/sub_reactor.c	/^void *sub_reactor(void *arg) {$/;"	f
 sum	common/thread_pool.h	/^    int sum;$/;"	m	struct:task_queue
 tail	common/thread_pool.h	/^    int head, tail;$/;"	m	struct:task_queue
 task_queue	common/thread_pool.h	/^struct task_queue {$/;"	s
