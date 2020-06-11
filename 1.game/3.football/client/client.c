@@ -118,7 +118,7 @@ int main(int argc, char **argv) {
                 send(sockfd, (void *)&msg, sizeof(msg), 0);
             } else if (msg.type & (FT_MSG | FT_WALL)) {
                 DBG(GREEN"Server Msg : "NONE"%s\n", msg.msg);
-            } else {
+            } else { 
                 DBG(GREEN"Server Msg : "NONE"Unsupport Message Type.\n");
             }
         }
@@ -132,6 +132,7 @@ int main(int argc, char **argv) {
             fflush(stdout);
             scanf("%[^\n]s", msg.msg);
             getchar();
+            if (!msg.msg[0]) continue;
             send(sockfd, (void *)&msg, sizeof(msg), 0);
         }
     }
